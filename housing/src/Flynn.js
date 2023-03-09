@@ -58,6 +58,20 @@ const CaliforniaMap = () => {
   }
   return (
     <div style={{ display: "flex", flexDirection: "row" }}>
+      <div style={{ marginLeft:"60px", width:'30%' }}>
+        The county you are hovering is: {hoverName} <br></br>
+        You just clicked: {clickedName}
+        <br></br>
+        <div style={{visibility: divStyle}}>
+        The rent data for {clickedName} County is as follows: <br></br>
+        Average Rent Cost : ${avg} USD <br></br>
+        Zero Bedrooms: ${zero} USD <br></br>
+        One Bedroom: ${one} USD <br></br>
+        Two Bedrooms: ${two} USD <br></br>
+        Three Bedrooms: ${three} USD <br></br>
+        Four Bedrooms: ${four} USD <br></br>
+        </div>
+      </div>
       <div style={{ position: "relative", width: "50%", height: "50%" }}>
         <ComposableMap
           projection="geoAlbersUsa"
@@ -68,7 +82,7 @@ const CaliforniaMap = () => {
         >
           <Geographies
             geography={californiaCounties}
-            style={{ transform: "translate(600px, 10px)" }}
+            style={{ transform: "translate(700px, 10px)" }}
           >
             {({ geographies }) =>
               geographies.map((geo) => (
@@ -87,20 +101,7 @@ const CaliforniaMap = () => {
           </Geographies>
         </ComposableMap>
       </div>
-      <div style={{ marginLeft: "20px" }}>
-        The county you are hovering is: {hoverName} <br></br>
-        You just clicked: {clickedName}
-        <br></br>
-        <div style={{visibility: divStyle}}>
-        The rent data for {clickedName} County is as follows: <br></br>
-        Average Rent Cost : ${avg} USD <br></br>
-        Zero Bedrooms: ${zero} USD <br></br>
-        One Bedroom: ${one} USD <br></br>
-        Two Bedrooms: ${two} USD <br></br>
-        Three Bedrooms: ${three} USD <br></br>
-        Four Bedrooms: ${four} USD <br></br>
-        </div>
-      </div>
+      
       
     </div>
   );
