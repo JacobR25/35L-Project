@@ -4,10 +4,56 @@ export const SignUp = (props) => {
     const [email, setEmail] = useState('');
     const [pswd, setPswd] = useState('');
     const [name, setName] = useState('');
+    const [validPswd, setValid] = useState(false);
+
+    const pswdCheck = (pswd) => {
+        setValid(validPswd => validPswd = true);
+        if(pswd.length < 8){
+            alert("Password must contain at least 8 characters");
+            setValid(validPswd => validPswd = false);
+        } else {
+            var LLCount = 0;
+            var ULCount = 0;
+            var numCount = 0;
+            var otherCount = 0;
+            for(var i = 0; i < pswd.length; i++){
+                if(pswd[i] >= "a" && pswd[i] <= "z"){
+                    LLCount++;
+                } else if(pswd[i] >= "A" && pswd[i] <= "Z"){
+                    ULCount++;
+                } else if(pswd[i] >= 0 && pswd[i] <= 9){
+                    numCount++;
+                } else {
+                    otherCount++;
+                }
+            }
+            if(otherCount === 0){
+                alert("Password must contain a special character");
+                setValid(validPswd => validPswd = false);
+            } else if(numCount === 0){
+                alert("Password must contain a number");
+                setValid(validPswd => validPswd = false);
+            } else if(ULCount === 0){
+                alert("Password must contain an uppercase letter");
+                setValid(validPswd => validPswd = false);
+            } else if(LLCount === 0){
+                alert("Password must contain a lowercase letter");
+                setValid(validPswd => validPswd = false);
+            }
+        }
+    }
 
     const submitLogin = (i) => {
         i.preventDefault();
-        console.log(email);
+        pswdCheck(pswd);
+        if(validPswd){
+            if(name && email && pswd) {
+                localStorage.setItem("nameID", name);
+                localStorage.setItem("emailID", email);
+                localStorage.setItem("pswdID", pswd);
+                alert("Account Created: Welcome to House Helpers!");
+            }
+        }
     }
 
     return (
