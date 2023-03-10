@@ -51,6 +51,9 @@ const CaliforniaMap = () => {
     setTooltipContent('No county hovered');
   };
   const isHovered = (name) => {
+    if(name===clickedName){
+      return 'blue';
+    }
     if(name===hoverName){
       return 'red';
     }
@@ -95,6 +98,17 @@ const CaliforniaMap = () => {
                   fill={isHovered(geo.properties.CountyName)}
                   stroke="#FFF"
                   strokeWidth={0.5}
+                  style={{
+                    default: {
+                        outline: 'none'
+                    },
+                    hover: {
+                        outline: 'none'
+                    },
+                    pressed: {
+                        outline: 'none'
+                    }
+                }}
                 />
               ))
             }
