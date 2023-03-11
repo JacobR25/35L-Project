@@ -34,6 +34,7 @@ export const LogIn = (props) => {
     }
 
     return (
+        <div>
         <div className="App">
             <div className="formatting-container">
                 <h2 className="subTitle">Welcome Back!</h2>
@@ -45,7 +46,10 @@ export const LogIn = (props) => {
                 <button type="submit"> Log In</button>
             </form>
             <button className="link-button" onClick={() => props.onFormSwitch('signup')}>Don't have an account? Sign up here</button>
+            <button className="guest-button" onClick={() => props.onStateSwitch('unlocked')}>Continue as Guest</button>
             </div>
         </div>
+        </div>
+
     )
 }

@@ -50,3 +50,10 @@ button {
   text-decoration: underline;
 
 }
+
+.guest-button{
+  background: none;
+  color: white;
+  text-decoration: underline;
+  padding: 0px;
+}

@@ -77,6 +77,7 @@ export const SignUp = (props) => {
                 <button type="submit"> Log In</button>
             </form>
             <button className="link-button" onClick={() => props.onFormSwitch('login')}>Already have an account? Sign in here</button>
+            <button className="guest-button" onClick={() => props.onStateSwitch('unlocked')}>Continue as Guest</button>
             </div>
         </div>
     )
