@@ -1,15 +1,32 @@
 import './App.css';
+import React, { useState } from 'react';
+import { LogIn } from "./LogIn";
+import { SignUp } from "./SignUp";
+import { TEMP } from "./TEMP";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-      </header>
-    </div>
-  );
+  const [currForm, setCurrForm] = useState('login');
+  const [currState, setCurrState] = useState('locked');
+
+  const switchForm = (formName) => {
+    setCurrForm(formName);
+  }
+
+  const switchState = (state) => {
+    setCurrState(state);
+  }
+
+  if(currState === "locked") {
+    if(currForm === "login"){
+      return <LogIn onFormSwitch={switchForm} onStateSwitch={switchState}/>
+    } else {
+      return <SignUp onFormSwitch={switchForm} onStateSwitch={switchState}/>
+    }
+  } else {
+    // this will return kellys page
+    return <TEMP onStateSwitch={switchState} />
+  }
+
 }
 
 export default App;
