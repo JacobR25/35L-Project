@@ -28,7 +28,7 @@ export const LogIn = (props) => {
             if(email && pswd) {
                 localStorage.setItem("emailID", email);
                 localStorage.setItem("pswdID", pswd);
-                alert("Welcome Back to House Helpers!");
+                props.onStateSwitch('unlocked');
             }
         }
     }

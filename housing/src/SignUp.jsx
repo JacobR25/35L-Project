@@ -58,7 +58,7 @@ export const SignUp = (props) => {
                 localStorage.setItem("nameID", name);
                 localStorage.setItem("emailID", email);
                 localStorage.setItem("pswdID", pswd);
-                alert("Account Created: Welcome to House Helpers!");
+                props.onStateSwitch('unlocked');
             }
         }
     }
