@@ -8,11 +8,14 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/react-chartjs-2@3.0.4/dist/react-chartjs-2.min.js"></script>
       </head>
+      <h1>Budget Calculator</h1>
+      <p>Enter your monthly income in the first box, and percentages(0-100) for each category</p>
+      <p>After clicking submit, move the mouse over the pie chart to see how much you should spend in each category.</p><br />
       <body>
         <form onsubmit="myFunction(event)">
 
           <label for="monthlyIncome">Monthly Income: </label>
-          <input type="text" id="monthlyIncome" name="monthlyIncome" style="margin-left:10px" onkeypress="return event.charCode >= 48 && event.charCode <= 57"/> <br /><br />
+          <input type="text" id="monthlyIncome" name="monthlyIncome" style="margin-left:10px" onkeypress="return event.charCode >= 48 && event.charCode <= 57"/> <hr><br />
           
           <label for="rent">Rent: </label>
           <input type="text" id="rent" name="rent" style="margin-left:85px" onkeypress="return event.charCode >= 48 && event.charCode <= 57"/> <br /><br />
@@ -44,7 +47,6 @@
         <script>
           function myFunction(event) {
             event.preventDefault();
-            console.log("in myFunction");
             var monthlyIncome = parseFloat(document.getElementById("monthlyIncome").value);
             var rentPercent = parseFloat(document.getElementById("rent").value);
             var transportationPercent = parseFloat(document.getElementById("transportation").value);
@@ -53,16 +55,26 @@
             var insurancePercent = parseFloat(document.getElementById("insurance").value);
             var savingsPercent = parseFloat(document.getElementById("savings").value);
             var entertainmentPercent = parseFloat(document.getElementById("entertainment").value);
+            var otherPercent = parseFloat(document.getElementById("other").value);
+            var total = rentPercent+transportationPercent+foodPercent+utilitiesPercent+insurancePercent+savingsPercent+entertainmentPercent+otherPercent;
+            console.log(total);
+
+            if(total != 100){
+              window.alert("the total percentages add to 100, not "+total+" you silly");
+              return;
+            } 
             //just doing budget to map, make it fully customizable
             //here we will get the percentages that they want
+            /*
             var rentPercent = document.getElementById("rent").value; //will actually get from input box
             var transportationPercent = document.getElementById("transportation").value; //will actually get from input box
             var foodPercent = document.getElementById("food").value;
             var utilitiesPercent = document.getElementById("utilities").value;
             var insurancePercent = document.getElementById("insurance").value;
             var savingsPercent = document.getElementById("savings").value;
-            var entertainmentPercent = document.getElementById("entertainment").value;
-            var otherPercent = document.getElementById("other").value;
+            var entertainmentPercent = document.getElementById("entertainment").value;*/
+            
+            
             var data = [          {title: "Rent", value: (monthlyIncome * rentPercent *.01), color: '#F2C4DE'},          {title: "Transportation", value: (monthlyIncome * transportationPercent*.01), color: '#71B1D9'},          {title: "Food", value: (monthlyIncome * foodPercent*.01), color: '#AED8F2'},          {title: "Utilities", value: (monthlyIncome * utilitiesPercent*.01), color: '#F2CDC4'},          {title: "Insurance", value: (monthlyIncome * insurancePercent*.01), color: '#A9B5D9'},          {title: "Savings", value: (monthlyIncome * savingsPercent*.01), color: '#F2A477'},          {title: "Entertainment", value: (monthlyIncome * entertainmentPercent*.01),color: '#5F9595'},          {title: "Other", value: (monthlyIncome * otherPercent*.01), color: '#D9BCF2'},        ];
             // check if canvas already exists, and remove if it does
             var existingCanvas = document.getElementById('myChart');
