@@ -125,6 +125,7 @@ const CaliforniaMap = () => {
 function test1(props) {
     return (
       <div>
+        <a className = "logout-button" href="./pieChart.html">link to piechart section</a>
         <button className="logout-button" onClick={() => props.onStateSwitch('locked')}>Log out</button>
         <div ><CaliforniaMap/></div>
       </div>
