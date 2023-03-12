@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import Flynn from './Flynn';
 import reportWebVitals from './reportWebVitals';
+import { PieChart } from 'react-minimal-pie-chart';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
