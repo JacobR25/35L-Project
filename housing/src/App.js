@@ -24,10 +24,7 @@ function App() {
     }
   } else {
     // this will return kellys page
-    return (<div>
-      <button className="logout-button">Log Out</button>
-      <Flynn onStateSwitch={switchState} /></div>
-    )
+    return <Flynn onStateSwitch={switchState}/>
   }
 
 }

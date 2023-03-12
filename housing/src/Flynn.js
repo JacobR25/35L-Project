@@ -122,9 +122,10 @@ const CaliforniaMap = () => {
 };
 
 
-function test1() {
+function test1(props) {
     return (
       <div>
+        <button className="logout-button" onClick={() => props.onStateSwitch('locked')}>Log out</button>
         <div ><CaliforniaMap/></div>
       </div>
     );
