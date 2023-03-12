@@ -125,15 +125,9 @@ const CaliforniaMap = () => {
 function test1() {
     return (
       <div>
-        <header className="App-header">
-          <p>
-            Flynn testing here
-          </p>
-          
-        </header>
         <div ><CaliforniaMap/></div>
       </div>
     );
-  }
+}
   
-  export default test1;
+export default test1;

@@ -2,7 +2,7 @@ import './App.css';
 import React, { useState } from 'react';
 import { LogIn } from "./LogIn";
 import { SignUp } from "./SignUp";
-import { TEMP } from "./TEMP";
+import Flynn from './Flynn';
 
 function App() {
   const [currForm, setCurrForm] = useState('login');
@@ -24,7 +24,10 @@ function App() {
     }
   } else {
     // this will return kellys page
-    return <TEMP onStateSwitch={switchState} />
+    return (<div>
+      <button className="logout-button">Log Out</button>
+      <Flynn onStateSwitch={switchState} /></div>
+    )
   }
 
 }

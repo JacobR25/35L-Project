@@ -57,3 +57,12 @@ button {
   text-decoration: underline;
   padding: 0px;
 }
+
+.logout-button{
+  border: none;
+  background-color: black;
+  color: white;
+  padding: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
