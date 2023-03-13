@@ -30,10 +30,12 @@
           <input type="text" id="entertainment" name="entertainment" /><br /><br />
           <label for="other">Other: </label>
           <input type="text" id="other" name="other" /><br /><br />
-          <input type="submit" value="Submit" onclick="showButton()" /><br /><br />
+          <input type="submit" value="Submit" /><br /><br />
           <div id="chart"></div>
         </form>
-        <ul id="arrayList"></ul>
+        <div>
+          <ul id="arrayList"></ul>
+        </div>
         <script>
           function myFunction(event) {
             event.preventDefault();
@@ -85,6 +87,10 @@
             }
             });
             printAVGColumn(rent);
+            const message = "Counties with average rent in your budget range:"; 
+            const messageElement = document.createElement("p");
+            messageElement.textContent = message;
+            document.body.appendChild(messageElement);
         }
 
         function printAVGColumn(rent) {
@@ -106,11 +112,9 @@
 
               }
       }
-
       xhr.send();
     }
   </script>
-  </div>
 </body>
 </html> 
     
