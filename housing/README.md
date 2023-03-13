@@ -1,15 +1,21 @@
 # IMPORTANT
 
-In order for this to run correctly, you have to go into the file \housing\node_modules\webpack\lib\dependencies\HarmonyDetectionParserPlugin.js and change lines 15 and 16 so they look like this.
-module.exports = class HarmonyDetectionParserPlugin {
-	constructor(options) {
-		const { topLevelAwait = true } = options || {};
-		this.topLevelAwait = true;
-	}
+In order for this to run correctly, you have to go into the file
+
+### \housing\node_modules\webpack\lib\dependencies\HarmonyDetectionParserPlugin.js 
+
+and change lines 15 and 16 so they look like this.
+
+    module.exports = class HarmonyDetectionParserPlugin {
+        constructor(options) {
+            const { topLevelAwait = true } = options || {};
+            this.topLevelAwait = true;
+            }
+    }   
 
 ## Running the project
 
-The first step is to run:
+In order to run the project, run these commands and it should work:
 
 ### `npm install firebase`
 
