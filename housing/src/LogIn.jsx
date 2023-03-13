@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import {app,db,auth} from "./firebase.js";
+import{getAuth, signInWithEmailAndPassword} from 'firebase/auth';
+
 
 export const LogIn = (props) => {
     const [email, setEmail] = useState('');
@@ -15,13 +18,14 @@ export const LogIn = (props) => {
         setValidP(validPswd => validPswd = true);
         emailCheck(email);
         if(validEmail){
-        // check if the pswd matched the email
+
         } else {
             setValidP(validPswd => validPswd = false);
         }
     }
 
     const submitLogin = (i) => {
+        signInWithEmailAndPassword(auth,email,pswd).catch((error)=>{window.alert(error.message); return; });
         i.preventDefault();
         pswdCheck(pswd);
         if(validPswd){
@@ -32,6 +36,7 @@ export const LogIn = (props) => {
             }
         }
     }
+    
 
     return (
         <div>

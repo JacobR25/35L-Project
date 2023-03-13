@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import {app,db,auth} from "./firebase.js";
+import{getAuth, signInWithEmailAndPassword,createUserWithEmailAndPassword} from 'firebase/auth';
+import{doc, setDoc, collection, query, where, getCountFromServer} from 'firebase/firestore';
 
 export const SignUp = (props) => {
     const [email, setEmail] = useState('');
@@ -49,12 +52,25 @@ export const SignUp = (props) => {
         }
     }
 
-    const submitLogin = (i) => {
+    const submitLogin = async (i) => {
         i.preventDefault();
         emailCheck(email);
         pswdCheck(pswd);
         if(validEmail && validPswd){
             if(name && email && pswd) {
+                createUserWithEmailAndPassword(auth,email,pswd);
+                await setDoc(doc(db, "Users", auth.currentUser.uid),{
+                fullName: name,
+                income: -1,
+                rent: -1,
+                transportation: -1,
+                food: -1,
+                utilities: -1,
+                insurance: -1,
+                savings: -1,
+                entertainment: -1,
+                other: -1,
+                });
                 localStorage.setItem("nameID", name);
                 localStorage.setItem("emailID", email);
                 localStorage.setItem("pswdID", pswd);
