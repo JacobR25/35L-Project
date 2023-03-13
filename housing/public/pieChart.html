@@ -30,11 +30,11 @@
           <input type="text" id="entertainment" name="entertainment" /><br /><br />
           <label for="other">Other: </label>
           <input type="text" id="other" name="other" /><br /><br />
-          <input type="submit" value="Submit" /><br /><br />
+          <input type="submit" value="Submit" onclick="showButton()" /><br /><br />
           <div id="chart"></div>
         </form>
+        <ul id="arrayList"></ul>
         <script>
-          var rent = 0;
           function myFunction(event) {
             event.preventDefault();
             console.log("in myFunction");
@@ -46,7 +46,7 @@
             var insurancePercent = parseFloat(document.getElementById("insurance").value);
             var savingsPercent = parseFloat(document.getElementById("savings").value);
             var entertainmentPercent = parseFloat(document.getElementById("entertainment").value);
-            var rent = rentPercent*monthlyIncome;
+            var rent = monthlyIncome*(rentPercent/100);
             //just doing budget to map, make it fully customizable
             //here we will get the percentages that they want
             var rentPercent = document.getElementById("rent").value; //will actually get from input box
@@ -84,16 +84,15 @@
                 maintainAspectRatio: false,
             }
             });
+            printAVGColumn(rent);
         }
-        var button = document.createElement("button");
-        button.innerHTML = "Show Counties in Budget";
-        button.onclick = printAVGColumn;
-        document.body.appendChild(button);
-        rent = 1800;
-        console.log(rent);
-        function printAVGColumn() {
+
+        function printAVGColumn(rent) {
+          console.log("in printAVG");
+          console.log(rent);
           const xhr = new XMLHttpRequest();
           xhr.open('GET', './counties - Sheet1.csv');
+          var arrayList = document.getElementById("arrayList");
           xhr.onload = function() {
               const csvData = xhr.response;
               const rows = csvData.split('\n');
@@ -102,13 +101,10 @@
                 const values = rows[i].split(',');
                 const average = values[6];
                 if (average >= 0.9*rent && average <= 1.1*rent){
-                  document.write(values[0] + " ");
+                  arrayList.innerHTML += "<li>" + values[0] + "</li>";
                 }
+
               }
-      const outputElement = document.getElementById('output');
-      outputElement.innerHTML = columnData.join('<br>');
-      document.write(columnData);
-      document.write("Bye");
       }
 
       xhr.send();
