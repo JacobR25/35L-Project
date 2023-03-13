@@ -70,6 +70,7 @@ export const SignUp = (props) => {
                 savings: -1,
                 entertainment: -1,
                 other: -1,
+                favCounty: "",
                 });
                 localStorage.setItem("nameID", name);
                 localStorage.setItem("emailID", email);

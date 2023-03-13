@@ -8,6 +8,7 @@ import {
 } from 'react-simple-maps';
 import californiaCounties from './California_County_Boundaries.geojson';
 import data from './counties - Sheet1.csv';
+import { getAuth, signOut } from "firebase/auth";
 
 
 const CaliforniaMap = () => {
@@ -121,12 +122,23 @@ const CaliforniaMap = () => {
   );
 };
 
+function logOut(props){
+const auth = getAuth();
+signOut(auth).then(() => {
+  // Sign-out successful.
+  props.onStateSwitch('locked');
+  
+}).catch((error) => {
+  window.alert("something went wrong");
+});
+  
+}
 
 function test1(props) {
     return (
       <div>
         <a className="logout-button" href="./pieChart.html">link to piechart section</a>
-        <button className="logout-button" onClick={() => props.onStateSwitch('locked')}>Log out</button>
+        <button className="logout-button" onClick={() => logOut(props)}>Log out</button>
         <div ><CaliforniaMap/></div>
       </div>
     );

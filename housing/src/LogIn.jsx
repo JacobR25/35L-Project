@@ -25,7 +25,13 @@ export const LogIn = (props) => {
     }
 
     const submitLogin = (i) => {
+        //const auth = getAuth();
+        //const user = auth.currentUser;
+        //console.log(user);
         signInWithEmailAndPassword(auth,email,pswd).catch((error)=>{window.alert(error.message); return; });
+        //const auth2 = getAuth();
+        //const user2 = auth.currentUser;
+        //console.log(user2);
         i.preventDefault();
         pswdCheck(pswd);
         if(validPswd){
