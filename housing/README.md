@@ -6,18 +6,14 @@ In order for this to run correctly, you have to go into the file
 
 and change lines 15 and 16 so they look like this.
 
-    module.exports = class HarmonyDetectionParserPlugin {
         constructor(options) {
             const { topLevelAwait = true } = options || {};
             this.topLevelAwait = true;
-            }
-    }   
+        }   
 
 ## Running the project
 
 In order to run the project, run these commands and it should work:
-
-### `npm install firebase`
 
 ### `npm install`
 

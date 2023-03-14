@@ -9,9 +9,10 @@ import {
 import californiaCounties from './California_County_Boundaries.geojson';
 import data from './counties - Sheet1.csv';
 import { getAuth, signOut } from "firebase/auth";
+import{doc, updateDoc, getDoc, collection, query, where, getCountFromServer} from 'firebase/firestore';
+import {app,db,auth} from "./firebase.js";
 
-
-const CaliforniaMap = () => {
+const CaliforniaMap =  () => {
   const [parsedData, setData] = React.useState([]);
   React.useEffect(() => {
     Papa.parse(data, {
@@ -22,6 +23,7 @@ const CaliforniaMap = () => {
       }
     });
   }, []);
+  //const [fav, setFav]= React.useState('');
   const [hoverName, setTooltipContent] = React.useState('No county hovered');
   const [clickedName, setClickedName] = React.useState('No county clicked yet');
   const [zero, setZero]= React.useState('');
@@ -35,7 +37,7 @@ const CaliforniaMap = () => {
     console.log(CountyName);
     setTooltipContent(CountyName);
   };
-  const handleMouseDown = (CountyName) => {
+  const handleMouseDown = async (CountyName) => {
     //call function to display the county rent info
     const rentPrice = parsedData.find(county => county.County === (CountyName+" County"));
     setZero(rentPrice.ZEROBR);
@@ -47,11 +49,23 @@ const CaliforniaMap = () => {
     setDivStyle('visible');
     console.log(divStyle);
     setClickedName(CountyName);
+    if(auth.currentUser){
+      await updateDoc(doc(db, "Users", auth.currentUser.uid),{
+        favCounty: CountyName
+        });
+    }
+    
   };
   const handleCountyLeave = () => {
     setTooltipContent('No county hovered');
   };
   const isHovered = (name) => {
+    // fav =await getDoc(doc(db, "Users", auth.currentUser.uid)).data().favCounty;
+
+    // if(name===fav){
+    //   return 'green';
+    // }
+    
     if(name===clickedName){
       return 'blue';
     }
