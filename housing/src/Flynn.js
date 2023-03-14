@@ -10,9 +10,17 @@ import californiaCounties from './California_County_Boundaries.geojson';
 import data from './counties - Sheet1.csv';
 import { getAuth, signOut } from "firebase/auth";
 import{doc, updateDoc, getDoc, collection, query, where, getCountFromServer} from 'firebase/firestore';
-import {app,db,auth} from "./firebase.js";
+import {app,db,auth, getUser} from "./firebase.js";
+const getFavCounty = async ()=>{
+  if(!auth.currentUser){
+    return;
+  }
+  var docu= await getDoc(doc(db, "Users", auth.currentUser.uid));
+  return docu.data().favCounty;
+}
+const CaliforniaMap = (lastFave='') => {
+  console.log(lastFave.lastFave);
 
-const CaliforniaMap =  () => {
   const [parsedData, setData] = React.useState([]);
   React.useEffect(() => {
     Papa.parse(data, {
@@ -54,7 +62,6 @@ const CaliforniaMap =  () => {
         favCounty: CountyName
         });
     }
-    
   };
   const handleCountyLeave = () => {
     setTooltipContent('No county hovered');
@@ -65,7 +72,9 @@ const CaliforniaMap =  () => {
     // if(name===fav){
     //   return 'green';
     // }
-    
+    if(clickedName=='No county clicked yet' &&name===lastFave.lastFave){
+      return 'blue';
+    }
     if(name===clickedName){
       return 'blue';
     }
@@ -148,14 +157,27 @@ signOut(auth).then(() => {
   
 }
 
-function test1(props) {
+function Test1(props) {
+  const [favCounty2, setFavCounty] = React.useState('');
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+      const fav = await getFavCounty();
+      if(!fav){
+        return;
+      }
+      setFavCounty(fav);
+    };
+    fetchData();
+  }, []);
+
     return (
       <div>
         <a className="logout-button" href="./pieChart.html">link to piechart section</a>
         <button className="logout-button" onClick={() => logOut(props)}>Log out</button>
-        <div ><CaliforniaMap/></div>
+        <div ><CaliforniaMap lastFave={favCounty2}/></div>
       </div>
     );
 }
   
-export default test1;
+export default Test1;

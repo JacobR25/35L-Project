@@ -26,7 +26,7 @@ export async function getUser(){
             user = userIter.data();
         }
     });
-    console.log("User is" + user.UID);
+
     return user;
 
 }
