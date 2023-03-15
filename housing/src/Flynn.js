@@ -75,6 +75,10 @@ const CaliforniaMap = (lastFave='') => {
     return 'pink';
   }
   async function handleFavcounty(clicked) {
+    if(clicked==='No county clicked yet'){
+      window.alert("Select a county to set a favorite");
+      return;
+    }
     setCurrFave(clicked);
     setFavPrice(parsedData.find(county => county.County === (clicked+" County")));
     if(!auth.currentUser){
