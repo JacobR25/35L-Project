@@ -40,8 +40,6 @@ function Test1(props) {
 
     function myFunction() {
 
-    function myFunction() {
-
         var total = Number(rentPercent)+Number(transportationPercent)+Number(foodPercent)+Number(utilitiesPercent)+Number(insurancePercent)+Number(savingsPercent)+Number(entertainmentPercent)+Number(otherPercent);
         console.log(total);
     
