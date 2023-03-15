@@ -64,10 +64,10 @@ function Test1(props) {
         var chart = new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: data.map(item => item.title),
+            labels: data1.map(item => item.title),
             datasets: [{
-            data: data.map(item => item.value),
-            backgroundColor: data.map(item => item.color)
+            data: data1.map(item => item.value),
+            backgroundColor: data1.map(item => item.color)
             }]
         },
         options: {
