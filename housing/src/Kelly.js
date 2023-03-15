@@ -1,14 +1,13 @@
 import React from 'react';
 import './Kelly.css';
 import './App.js';
-import "https://cdn.jsdelivr.net/npm/react@17.0.2/umd/react.production.min.js";
-import "https://cdn.jsdelivr.net/npm/react-dom@17.0.2/umd/react-dom.production.min.js";
-import "https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js";
-import {Chart} from "https://cdn.jsdelivr.net/npm/react-chartjs-2@3.0.4/dist/react-chartjs-2.min.js";
+import {Chart} from 'chart.js'
 import { getAuth, signOut } from "firebase/auth";
 import{doc, updateDoc, getDoc} from 'firebase/firestore';
 import {db,auth} from "./firebase.js";
 import { useState } from 'react';
+
+
 
 
 
@@ -24,16 +23,7 @@ function Test1(props) {
     const [otherPercent, setOtherPercent] = useState(0);
 
     function myFunction() {
-        //event.preventDefault();
-        // var monthlyIncome = parseFloat(document.getElementById("monthlyIncome").value);
-        // var rentPercent = parseFloat(document.getElementById("rent").value);
-        // var transportationPercent = parseFloat(document.getElementById("transportation").value);
-        // var foodPercent = parseFloat(document.getElementById("food").value);
-        // var utilitiesPercent = parseFloat(document.getElementById("utilities").value);
-        // var insurancePercent = parseFloat(document.getElementById("insurance").value);
-        // var savingsPercent = parseFloat(document.getElementById("savings").value);
-        // var entertainmentPercent = parseFloat(document.getElementById("entertainment").value);
-        // var otherPercent = parseFloat(document.getElementById("other").value);
+
         var total = Number(rentPercent)+Number(transportationPercent)+Number(foodPercent)+Number(utilitiesPercent)+Number(insurancePercent)+Number(savingsPercent)+Number(entertainmentPercent)+Number(otherPercent);
         console.log(total);
     
@@ -42,34 +32,28 @@ function Test1(props) {
           return;
         } 
         
-        var data = [{title: "Rent", value: (monthlyIncome * rentPercent *.01), color: '#F2C4DE'}, {title: "Transportation", value: (monthlyIncome * transportationPercent*.01), color: '#71B1D9'}, {title: "Food", value: (monthlyIncome * foodPercent*.01), color: '#AED8F2'}, {title: "Utilities", value: (monthlyIncome * utilitiesPercent*.01), color: '#F2CDC4'},          {title: "Insurance", value: (monthlyIncome * insurancePercent*.01), color: '#A9B5D9'},          {title: "Savings", value: (monthlyIncome * savingsPercent*.01), color: '#F2A477'},          {title: "Entertainment", value: (monthlyIncome * entertainmentPercent*.01),color: '#5F9595'},          {title: "Other", value: (monthlyIncome * otherPercent*.01), color: '#D9BCF2'},        ];
+        var data1 = [{title: "Rent", value: (monthlyIncome * rentPercent *.01), color: '#F2C4DE'}, {title: "Transportation", value: (monthlyIncome * transportationPercent*.01), color: '#71B1D9'}, {title: "Food", value: (monthlyIncome * foodPercent*.01), color: '#AED8F2'}, {title: "Utilities", value: (monthlyIncome * utilitiesPercent*.01), color: '#F2CDC4'},          {title: "Insurance", value: (monthlyIncome * insurancePercent*.01), color: '#A9B5D9'},          {title: "Savings", value: (monthlyIncome * savingsPercent*.01), color: '#F2A477'},          {title: "Entertainment", value: (monthlyIncome * entertainmentPercent*.01),color: '#5F9595'},          {title: "Other", value: (monthlyIncome * otherPercent*.01), color: '#D9BCF2'},        ];
         // check if canvas already exists, and remove if it does
-        var existingCanvas = document.getElementById('myChart');
-        if (existingCanvas) {
-            existingCanvas.remove();
-        }
-        // create the chart
-        var canvas = document.createElement('canvas');
-        canvas.id = 'myChart';
-        canvas.width = 400;
-        canvas.height = 400;
-        document.body.appendChild(canvas);
-        var ctx = canvas.getContext('2d');
-        var chart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: data.map(item => item.title),
-            datasets: [{
-            data: data.map(item => item.value),
-            backgroundColor: data.map(item => item.color)
-            }]
-        },
-        options: {
-            responsive: false,
-            maintainAspectRatio: false,
-        }
-        });
-        return <div id="chart"></div>;
+        new Chart("myChart", {
+            type: "pie",
+            data: {
+              labels: data1.title,
+              datasets: [{
+                backgroundColor: data1.color,
+                data: data1.value
+              }]
+            },
+            options: {
+              title: {
+                display: true,
+                text: "World Wide Wine Production"
+              }
+            }
+          });
+        return( <>
+        <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+        </>
+        );
     }
 
     return(<>
