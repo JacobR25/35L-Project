@@ -11,6 +11,7 @@ import data from './counties - Sheet1.csv';
 import { getAuth, signOut } from "firebase/auth";
 import{doc, updateDoc, getDoc} from 'firebase/firestore';
 import {db,auth} from "./firebase.js";
+
 const getFavCounty = async ()=>{
   if(!auth.currentUser){
     return;
@@ -209,7 +210,7 @@ function Test1(props) {
 
     return (
       <div>
-        <a className="logout-button" href="./pieChart.html">link to piechart section</a>
+        <a className="logout-button" href="./pieChart.html" onClick={() => props.onPageSwitch('pie')}>link to piechart section</a>
         <button className="logout-button" onClick={() => logOut(props)}>Log out</button>
         <div ><CaliforniaMap lastFave={favCounty2}/></div>
       </div>
