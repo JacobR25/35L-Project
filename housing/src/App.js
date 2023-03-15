@@ -29,14 +29,11 @@ const switchPage = (page) => {
     }
   } else {
     if(whosPage === 'map'){
-      return (
-        <Flynn onStateSwitch={switchState} onPageSwitch={switchPage}/>
-        );
+      return <Flynn onStateSwitch={switchState} onPageSwitch={switchPage}/>
     }
     else{
-      return(
-        <Kelly onStateSwitch={switchState} onPageSwitch={switchPage}/>
-      )
+      return <Kelly onStateSwitch={switchState} onPageSwitch={switchPage}/>
+      
     }
     
   }
