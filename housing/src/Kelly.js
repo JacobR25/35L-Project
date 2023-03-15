@@ -1,26 +1,44 @@
 import React from 'react';
 import './Kelly.css';
 import './App.js';
-import {Chart} from 'chart.js'
+import {} from "https://cdn.jsdelivr.net/npm/react@17.0.2/umd/react.production.min.js";
+import {} from "https://cdn.jsdelivr.net/npm/react-dom@17.0.2/umd/react-dom.production.min.js";
+import {Chart} from "https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js";
+import {} from "https://cdn.jsdelivr.net/npm/react-chartjs-2@3.0.4/dist/react-chartjs-2.min.js";
 import { getAuth, signOut } from "firebase/auth";
 import{doc, updateDoc, getDoc} from 'firebase/firestore';
 import {db,auth} from "./firebase.js";
 import { useState } from 'react';
 
-
-
-
-
 function Test1(props) {
-    const [monthlyIncome, setMIncome] = useState(0);
-    const [rentPercent, setRentPercent] = useState(0);
-    const [transportationPercent, setTransPercent] = useState(0);
-    const [foodPercent, setFoodPercent] = useState(0);
-    const [utilitiesPercent, setUtilitiesPercent] = useState(0);
-    const [insurancePercent, setInsurPercent] = useState(0);
-    const [savingsPercent, setSavingPercent] = useState(0);
-    const [entertainmentPercent, setEntPercent] = useState(0);
-    const [otherPercent, setOtherPercent] = useState(0);
+    const [monthlyIncome, setMIncome] = useState();
+    const [rentPercent, setRentPercent] = useState();
+    const [transportationPercent, setTransPercent] = useState();
+    const [foodPercent, setFoodPercent] = useState();
+    const [utilitiesPercent, setUtilitiesPercent] = useState();
+    const [insurancePercent, setInsurPercent] = useState();
+    const [savingsPercent, setSavingPercent] = useState();
+    const [entertainmentPercent, setEntPercent] = useState();
+    const [otherPercent, setOtherPercent] = useState();
+
+    const updateInfo = async () => {
+      if(!auth.currentUser){
+        return;
+      }
+      await updateDoc(doc(db, "Users", auth.currentUser.uid),{
+        income: monthlyIncome,
+        rent: rentPercent,
+        transportation: transportationPercent,
+        food: foodPercent,
+        utilities: utilitiesPercent,
+        insurance: insurancePercent,
+        savings: savingsPercent,
+        entertainment: entertainmentPercent,
+        other: otherPercent,
+        });
+    }
+
+    function myFunction() {
 
     function myFunction() {
 
@@ -34,29 +52,49 @@ function Test1(props) {
         
         var data1 = [{title: "Rent", value: (monthlyIncome * rentPercent *.01), color: '#F2C4DE'}, {title: "Transportation", value: (monthlyIncome * transportationPercent*.01), color: '#71B1D9'}, {title: "Food", value: (monthlyIncome * foodPercent*.01), color: '#AED8F2'}, {title: "Utilities", value: (monthlyIncome * utilitiesPercent*.01), color: '#F2CDC4'},          {title: "Insurance", value: (monthlyIncome * insurancePercent*.01), color: '#A9B5D9'},          {title: "Savings", value: (monthlyIncome * savingsPercent*.01), color: '#F2A477'},          {title: "Entertainment", value: (monthlyIncome * entertainmentPercent*.01),color: '#5F9595'},          {title: "Other", value: (monthlyIncome * otherPercent*.01), color: '#D9BCF2'},        ];
         // check if canvas already exists, and remove if it does
-        new Chart("myChart", {
-            type: "pie",
-            data: {
-              labels: data1.title,
-              datasets: [{
-                backgroundColor: data1.color,
-                data: data1.value
-              }]
-            },
-            options: {
-              title: {
-                display: true,
-                text: "World Wide Wine Production"
-              }
-            }
-          });
-        return( <>
-        <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
-        </>
-        );
+        var existingCanvas = document.getElementById('myChart');
+        if (existingCanvas) {
+            existingCanvas.remove();
+        }
+        // create the chart
+        var canvas = document.createElement('canvas');
+        canvas.id = 'myChart';
+        canvas.width = 400;
+        canvas.height = 400;
+        document.body.appendChild(canvas);
+        var ctx = canvas.getContext('2d');
+        var chart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: data.map(item => item.title),
+            datasets: [{
+            data: data.map(item => item.value),
+            backgroundColor: data.map(item => item.color)
+            }]
+        },
+        options: {
+            responsive: false,
+            maintainAspectRatio: false,
+        }
+        });
     }
 
+    function logOut(props){
+      const auth = getAuth();
+      signOut(auth).then(() => {
+        // Sign-out successful.
+        props.onStateSwitch('locked');
+        
+      }).catch((error) => {
+        window.alert("something went wrong");
+      });
+        
+      }
+
     return(<>
+      <button className='logout-button' onClick={() => props.onPageSwitch('map')}>Map</button>
+      <button className="logout-button" onClick={() => logOut(props)}>Log out</button>
+      <h1>Curr User: {auth.currentUser.email}</h1>
         <title>Budget Calculator</title>
       <h1>Budget Calculator</h1>
       <p>Enter your monthly income in the first box, and percentages(0-100) for each category</p>
@@ -92,7 +130,7 @@ function Test1(props) {
           
           
         </form>
-        <button onClick={myFunction}>Submit</button>
+        <button className="logout-button" onClick={myFunction}>Submit</button>
         </body>
 </>);
 }

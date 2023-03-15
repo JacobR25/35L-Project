@@ -7,7 +7,7 @@ import Kelly from "./Kelly.js";
 function App() {
   const [currForm, setCurrForm] = useState('login');
   const [currState, setCurrState] = useState('locked');
-  const [whosPage, changePage] = useState('pie');
+  const [whosPage, changePage] = useState('map');
 
 const switchPage = (page) => {
   changePage(page);

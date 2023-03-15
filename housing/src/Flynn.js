@@ -210,7 +210,7 @@ function Test1(props) {
 
     return (
       <div>
-        <a className="logout-button" href="./pieChart.html" onClick={() => props.onPageSwitch('pie')}>link to piechart section</a>
+        <button className='logout-button' onClick={() => props.onPageSwitch('pie')}>Pie Chart</button>
         <button className="logout-button" onClick={() => logOut(props)}>Log out</button>
         <div ><CaliforniaMap lastFave={favCounty2}/></div>
       </div>
