@@ -9,8 +9,6 @@ import{doc, updateDoc, getDoc} from 'firebase/firestore';
 import {db,auth} from "./firebase.js";
 import { useState } from 'react';
 
-
-
 function Test1(props) {
     const [monthlyIncome, setMIncome] = useState();
     const [rentPercent, setRentPercent] = useState();
@@ -24,22 +22,6 @@ function Test1(props) {
 
 
   async function myFunction() {
-    if(!auth.currentUser){
-      return;
-    } else {
-      await updateDoc(doc(db, "Users", auth.currentUser.uid),{
-        income: monthlyIncome,
-        rent: rentPercent,
-        transportation: transportationPercent,
-        food: foodPercent,
-        utilities: utilitiesPercent,
-        insurance: insurancePercent,
-        savings: savingsPercent,
-        entertainment: entertainmentPercent,
-        other: otherPercent,
-        });
-    }
-
         var total = Number(rentPercent)+Number(transportationPercent)+Number(foodPercent)+Number(utilitiesPercent)+Number(insurancePercent)+Number(savingsPercent)+Number(entertainmentPercent)+Number(otherPercent);
         console.log(total);
     
@@ -47,6 +29,23 @@ function Test1(props) {
           window.alert("the total percentages add to 100, not "+total+" you silly");
           return;
         } 
+
+        if(!auth.currentUser){
+      
+        } else {
+          await updateDoc(doc(db, "Users", auth.currentUser.uid),{
+            income: monthlyIncome,
+            rent: rentPercent,
+            transportation: transportationPercent,
+            food: foodPercent,
+            utilities: utilitiesPercent,
+            insurance: insurancePercent,
+            savings: savingsPercent,
+            entertainment: entertainmentPercent,
+            other: otherPercent,
+            });
+        }
+        
         Chart.register(...registerables);
 
         var data1 = [{title: "Rent", value: (monthlyIncome * rentPercent *.01), color: '#F2C4DE'}, {title: "Transportation", value: (monthlyIncome * transportationPercent*.01), color: '#71B1D9'}, {title: "Food", value: (monthlyIncome * foodPercent*.01), color: '#AED8F2'}, {title: "Utilities", value: (monthlyIncome * utilitiesPercent*.01), color: '#F2CDC4'},          {title: "Insurance", value: (monthlyIncome * insurancePercent*.01), color: '#A9B5D9'},          {title: "Savings", value: (monthlyIncome * savingsPercent*.01), color: '#F2A477'},          {title: "Entertainment", value: (monthlyIncome * entertainmentPercent*.01),color: '#5F9595'},          {title: "Other", value: (monthlyIncome * otherPercent*.01), color: '#D9BCF2'},        ];
@@ -83,7 +82,7 @@ function Test1(props) {
       signOut(auth).then(() => {
         // Sign-out successful.
         props.onStateSwitch('locked');
-        
+        props.onPageSwitch('map');
       }).catch((error) => {
         window.alert("something went wrong");
       });
@@ -131,7 +130,7 @@ function Test1(props) {
           <input type="number" value={entertainmentPercent} onChange={(i) => setEntPercent(i.target.value)} id="entertainment" name="entertainment" placeholder='0'/*style="margin-left:20px"*/ /><br /><br />
           
           <label for="other">Other: </label>
-          <input type="number" value={otherPercent} onChange={(i) => setOtherPercent(i.target.value)} id="other" /*style="margin-left:75px"*/ name="other" /><br /><br />
+          <input type="number" value={otherPercent} onChange={(i) => setOtherPercent(i.target.value)} id="other" /*style="margin-left:75px"*/ name="other" placeholder='0'/><br /><br />
           
           
         </form>

@@ -187,7 +187,7 @@ const auth = getAuth();
 signOut(auth).then(() => {
   // Sign-out successful.
   props.onStateSwitch('locked');
-  
+  props.onPageSwitch('map');
 }).catch((error) => {
   window.alert("something went wrong");
 });
