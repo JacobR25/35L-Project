@@ -1,14 +1,15 @@
 import React from 'react';
 import './Kelly.css';
 import './App.js';
-import {} from "https://cdn.jsdelivr.net/npm/react@17.0.2/umd/react.production.min.js";
-import {} from "https://cdn.jsdelivr.net/npm/react-dom@17.0.2/umd/react-dom.production.min.js";
-import {Chart} from "https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js";
-import {} from "https://cdn.jsdelivr.net/npm/react-chartjs-2@3.0.4/dist/react-chartjs-2.min.js";
+//import ReactDOM from 'react-dom';
+import {Chart, registerables} from 'chart.js';
+//import { Line } from 'react-chartjs-2';
 import { getAuth, signOut } from "firebase/auth";
 import{doc, updateDoc, getDoc} from 'firebase/firestore';
 import {db,auth} from "./firebase.js";
 import { useState } from 'react';
+
+
 
 function Test1(props) {
     const [monthlyIncome, setMIncome] = useState();
@@ -47,7 +48,8 @@ function Test1(props) {
           window.alert("the total percentages add to 100, not "+total+" you silly");
           return;
         } 
-        
+        Chart.register(...registerables);
+
         var data1 = [{title: "Rent", value: (monthlyIncome * rentPercent *.01), color: '#F2C4DE'}, {title: "Transportation", value: (monthlyIncome * transportationPercent*.01), color: '#71B1D9'}, {title: "Food", value: (monthlyIncome * foodPercent*.01), color: '#AED8F2'}, {title: "Utilities", value: (monthlyIncome * utilitiesPercent*.01), color: '#F2CDC4'},          {title: "Insurance", value: (monthlyIncome * insurancePercent*.01), color: '#A9B5D9'},          {title: "Savings", value: (monthlyIncome * savingsPercent*.01), color: '#F2A477'},          {title: "Entertainment", value: (monthlyIncome * entertainmentPercent*.01),color: '#5F9595'},          {title: "Other", value: (monthlyIncome * otherPercent*.01), color: '#D9BCF2'},        ];
         // check if canvas already exists, and remove if it does
         var existingCanvas = document.getElementById('myChart');
@@ -97,7 +99,6 @@ function Test1(props) {
       <h1>Budget Calculator</h1>
       <p>Enter your monthly income in the first box, and percentages(0-100) for each category</p>
       <p>After clicking submit, move the mouse over the pie chart to see how much you should spend in each category.</p><br />
-      <body>
         <form>
           <label for="monthlyIncome">Monthly Income: </label>
           <input type="number" value={monthlyIncome} onChange={(i) => setMIncome(i.target.value)}id="monthlyIncome" name="monthlyIncome" placeholder='0'/*style="margin-left:10px"*/ /> <hr /><br />
@@ -129,7 +130,6 @@ function Test1(props) {
           
         </form>
         <button className="logout-button" onClick={myFunction}>Submit</button>
-        </body>
 </>);
 }
 
