@@ -11,13 +11,15 @@ and change lines 15 and 16 so they look like this.
             this.topLevelAwait = true;
         }   
 
-## Running the project
+# Running the project
 
 In order to run the project, run these commands and it should work:
+
+### `cd housing`
 
 ### `npm install`
 
 ### `npm start`
 
-Then navigate to http://localhost:3000/ and it should work.
+Then, navigate to http://localhost:3000/ and it should work.
 
