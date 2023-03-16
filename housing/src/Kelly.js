@@ -22,10 +22,11 @@ function Test1(props) {
     const [entertainmentPercent, setEntPercent] = useState();
     const [otherPercent, setOtherPercent] = useState();
 
-    const updateInfo = async () => {
-      if(!auth.currentUser){
-        return;
-      }
+
+  async function myFunction() {
+    if(!auth.currentUser){
+      return;
+    } else {
       await updateDoc(doc(db, "Users", auth.currentUser.uid),{
         income: monthlyIncome,
         rent: rentPercent,
@@ -38,8 +39,6 @@ function Test1(props) {
         other: otherPercent,
         });
     }
-
-    function myFunction() {
 
         var total = Number(rentPercent)+Number(transportationPercent)+Number(foodPercent)+Number(utilitiesPercent)+Number(insurancePercent)+Number(savingsPercent)+Number(entertainmentPercent)+Number(otherPercent);
         console.log(total);
@@ -91,10 +90,17 @@ function Test1(props) {
         
       }
 
+      var usrStr
+      if(!auth.currentUser){
+        usrStr="Not Logged In";
+      } else {
+        usrStr=auth.currentUser.email;
+      }
+
     return(<>
       <button className='logout-button' onClick={() => props.onPageSwitch('map')}>Map</button>
       <button className="logout-button" onClick={() => logOut(props)}>Log out</button>
-      <h1>Curr User: {auth.currentUser.email}</h1>
+      <h1>Curr User: {usrStr}</h1>
         <title>Budget Calculator</title>
       <h1>Budget Calculator</h1>
       <p>Enter your monthly income in the first box, and percentages(0-100) for each category</p>
