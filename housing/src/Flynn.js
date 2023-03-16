@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import Papa from 'papaparse';
 import {
   ComposableMap,
@@ -11,6 +10,7 @@ import data from './counties - Sheet1.csv';
 import { getAuth, signOut } from "firebase/auth";
 import{doc, updateDoc, getDoc} from 'firebase/firestore';
 import {db,auth} from "./firebase.js";
+import './Flynn.css';
 
 const getFavCounty = async ()=>{
   if(!auth.currentUser){
@@ -545,8 +545,8 @@ const parsedData=[
  ];
 const CaliforniaMap = (lastFave='') => {
 
-  const [hoverName, setTooltipContent] = React.useState('No county hovered');
-  const [clickedName, setClickedName] = React.useState('No county clicked yet');
+  const [hoverName, setTooltipContent] = React.useState('');
+  const [clickedName, setClickedName] = React.useState('No county selected yet');
   const [currFave, setCurrFave]= React.useState('');
   const [rentPrice, setRentPrice]= React.useState([]);
   const [favPrice, setFavPrice]= React.useState([]);
@@ -562,7 +562,7 @@ const CaliforniaMap = (lastFave='') => {
     setClickedName(CountyName);
   };
   const handleCountyLeave = () => {
-    setTooltipContent('No county hovered');
+    setTooltipContent('');
   };
   const isHovered = (name) => {
     // fav =await getDoc(doc(db, "Users", auth.currentUser.uid)).data().favCounty;
@@ -589,7 +589,7 @@ const CaliforniaMap = (lastFave='') => {
     return 'pink';
   }
   async function handleFavcounty(clicked) {
-    if(clicked==='No county clicked yet'){
+    if(clicked==='No county selected yet'){
       window.alert("Select a county to set a favorite");
       return;
     }
@@ -614,11 +614,11 @@ const CaliforniaMap = (lastFave='') => {
   }
   return (
     <div style={{ display: "flex", flexDirection: "row" }}>
-      <div style={{ marginLeft:"60px", width:'30%' }}>
-        The county you are hovering is: {hoverName} <br></br>
-        You just clicked: {clickedName}
+      <div className="flynn-page">
+        You are looking at: {hoverName} <br></br>
+        Last Selected: {clickedName}
         <br></br>
-        <div style={{display: divStyle}}>
+        <div className='text-display'>
         The rent data for {clickedName} County is as follows: <br></br>
         Average Rent Cost : ${rentPrice.AVG} USD <br></br>
         Zero Bedrooms: ${rentPrice.ZEROBR} USD <br></br>
@@ -627,17 +627,9 @@ const CaliforniaMap = (lastFave='') => {
         Three Bedrooms: ${rentPrice.THREEBR} USD <br></br>
         Four Bedrooms: ${rentPrice.FOURBR} USD <br></br>
         </div>
-        <button style={{
-        border: "none",
-        backgroundColor: "transparent",
-        color: "#0077FF",
-        textDecoration: "underline",
-        cursor: "pointer",
-        display: "inline-block",
-        padding: "0",
-        margin: "0",
-        lineHeight: "1.1",}} onClick={() => handleFavcounty(clickedName)}>Set Favorite County</button><br></br>
-        <div style={{display: favStyle}}>
+
+        Current Favorite: {currFave}
+        <div className='text-display'>
         The rent data for your favorite, {currFave} County, is as follows: <br></br>
         Average Rent Cost : ${favPrice.AVG} USD <br></br>
         Zero Bedrooms: ${favPrice.ZEROBR} USD <br></br>
@@ -645,6 +637,7 @@ const CaliforniaMap = (lastFave='') => {
         Two Bedrooms: ${favPrice.TWOBR} USD <br></br>
         Three Bedrooms: ${favPrice.THREEBR} USD <br></br>
         Four Bedrooms: ${favPrice.FOURBR} USD <br></br>
+        <button className='favCounty-button' onClick={() => handleFavcounty(clickedName)}>Set Favorite County</button><br></br>
         </div>
       </div>
 
