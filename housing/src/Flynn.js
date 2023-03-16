@@ -544,7 +544,10 @@ const parsedData=[
   }
  ];
 const CaliforniaMap = (lastFave='') => {
-
+  var existingCanvas = document.getElementById('myChart');
+  if (existingCanvas) {
+      existingCanvas.remove();
+  }
   const [hoverName, setTooltipContent] = React.useState('');
   const [clickedName, setClickedName] = React.useState('No county selected yet');
   const [currFave, setCurrFave]= React.useState('');
