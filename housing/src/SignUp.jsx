@@ -85,13 +85,19 @@ export const SignUp = (props) => {
             <div className="formatting-container">
             <h1 className="title">House Helpers</h1>
                 <h2 className="subTitle">Let's Get Started</h2>
-            <form className="signup-format" onSubmit={submitLogin}>
+            <form onSubmit={submitLogin}>
                 <label className="label-style">Full Name</label>
+                <br></br>
                 <input className="input-style" value={name} onChange={(i) => setName(i.target.value)} name="name" id="name" placeholder="i.e. John Smith" />
+                <br></br>
                 <label className="label-style" for="email">Email </label>
+                <br></br>
                 <input className="input-style" value={email} onChange={(i) => setEmail(i.target.value)} type="email" placeholder="i.e. youremail@gmail.com" id="email" name="email"/>
+                <br></br>
                 <label className="label-style" for="password">Password </label>
+                <br></br>
                 <input className="input-style" value={pswd} onChange={(i) => setPswd(i.target.value)} type="password" placeholder="********" id="password" name="password"/>
+                <br></br>
                 <button type="submit"> Log In</button>
             </form>
             <button className="link-button" onClick={() => props.onFormSwitch('login')}>Already have an account? Sign in here</button>
