@@ -544,7 +544,10 @@ const parsedData=[
   }
  ];
 const CaliforniaMap = (lastFave='') => {
-
+  var existingCanvas = document.getElementById('myChart');
+  if (existingCanvas) {
+      existingCanvas.remove();
+  }
   const [hoverName, setTooltipContent] = React.useState('');
   const [clickedName, setClickedName] = React.useState('{None}');
   const [currFave, setCurrFave]= React.useState('');
@@ -691,6 +694,10 @@ const CaliforniaMap = (lastFave='') => {
 };
 
 function logOut(props){
+  var existingCanvas = document.getElementById('myChart');
+  if (existingCanvas) {
+      existingCanvas.remove();
+  }
 const auth = getAuth();
 signOut(auth).then(() => {
   // Sign-out successful.

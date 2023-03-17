@@ -107,6 +107,10 @@ function Test1(props) {
     }
 
     function logOut(props){
+      var existingCanvas = document.getElementById('myChart');
+      if (existingCanvas) {
+          existingCanvas.remove();
+      }
       const auth = getAuth();
       signOut(auth).then(() => {
         // Sign-out successful.
