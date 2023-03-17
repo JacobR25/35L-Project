@@ -1,8 +1,15 @@
-# IMPORTANT
+# Running our project
+
+First, go to terminal and run the following command:
+
+### `git clone https://github.com/JacobR25/JacobR25.github.io.git`
+
+<br />
 
 In order for this to run correctly, you have to go into the file
 
-### \housing\node_modules\webpack\lib\dependencies\HarmonyDetectionParserPlugin.js 
+### `\housing\node_modules\webpack\lib\dependencies\HarmonyDetectionParserPlugin.js`
+<br />
 
 and change lines 15 and 16 so they look like this.
 
@@ -11,9 +18,12 @@ and change lines 15 and 16 so they look like this.
             this.topLevelAwait = true;
         }   
 
-## Running the project
+## Last steps
+<br/>
 
 In order to run the project, run these commands and it should work:
+
+### `cd housing`
 
 ### `npm install`
 
