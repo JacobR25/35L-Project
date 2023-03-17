@@ -7,7 +7,7 @@
   background-color: rgb(93, 126, 96);
 }
 
-.formatting-container, .login-format, .signup-format {
+.formatting-container,.login-formatABC, .signup-format {
   display: flex;
   flex-direction: column;
 }
@@ -48,7 +48,9 @@
 button {
   border: none;
   background-color: white;
-  padding: 20px;
+  padding: 10px;
+  padding-left: 67px;
+  padding-right: 67px;
   border-radius: 5px;
   cursor: pointer;
 }
