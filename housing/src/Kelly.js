@@ -1,9 +1,7 @@
 import React from 'react';
 import './Kelly.css';
 import './App.js';
-//import ReactDOM from 'react-dom';
 import {Chart, registerables} from 'chart.js';
-//import { Line } from 'react-chartjs-2';
 import { getAuth, signOut } from "firebase/auth";
 import{doc, updateDoc, getDoc} from 'firebase/firestore';
 import {db,auth} from "./firebase.js";

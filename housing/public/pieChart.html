@@ -63,16 +63,6 @@
               window.alert("the total percentages add to 100, not "+total+" you silly");
               return;
             } 
-            //just doing budget to map, make it fully customizable
-            //here we will get the percentages that they want
-            /*
-            var rentPercent = document.getElementById("rent").value; //will actually get from input box
-            var transportationPercent = document.getElementById("transportation").value; //will actually get from input box
-            var foodPercent = document.getElementById("food").value;
-            var utilitiesPercent = document.getElementById("utilities").value;
-            var insurancePercent = document.getElementById("insurance").value;
-            var savingsPercent = document.getElementById("savings").value;
-            var entertainmentPercent = document.getElementById("entertainment").value;*/
             
             
             var data = [          {title: "Rent", value: (monthlyIncome * rentPercent *.01), color: '#F2C4DE'},          {title: "Transportation", value: (monthlyIncome * transportationPercent*.01), color: '#71B1D9'},          {title: "Food", value: (monthlyIncome * foodPercent*.01), color: '#AED8F2'},          {title: "Utilities", value: (monthlyIncome * utilitiesPercent*.01), color: '#F2CDC4'},          {title: "Insurance", value: (monthlyIncome * insurancePercent*.01), color: '#A9B5D9'},          {title: "Savings", value: (monthlyIncome * savingsPercent*.01), color: '#F2A477'},          {title: "Entertainment", value: (monthlyIncome * entertainmentPercent*.01),color: '#5F9595'},          {title: "Other", value: (monthlyIncome * otherPercent*.01), color: '#D9BCF2'},        ];

@@ -61,15 +61,15 @@ export const SignUp = (props) => {
                 createUserWithEmailAndPassword(auth,email,pswd);
                 await setDoc(doc(db, "Users", auth.currentUser.uid),{
                 fullName: name,
-                income: -1,
-                rent: -1,
-                transportation: -1,
-                food: -1,
-                utilities: -1,
-                insurance: -1,
-                savings: -1,
-                entertainment: -1,
-                other: -1,
+                income: 0,
+                rent: 0,
+                transportation: 0,
+                food: 0,
+                utilities: 0,
+                insurance: 0,
+                savings: 0,
+                entertainment: 0,
+                other: 0,
                 favCounty: "",
                 });
                 localStorage.setItem("nameID", name);
