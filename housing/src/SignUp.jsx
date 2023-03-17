@@ -83,14 +83,15 @@ export const SignUp = (props) => {
     return (
         <div className="App">
             <div className="formatting-container">
+            <h1 className="title">House Helpers</h1>
                 <h2 className="subTitle">Let's Get Started</h2>
             <form className="signup-format" onSubmit={submitLogin}>
-                <label>Full Name</label>
-                <input value={name} onChange={(i) => setName(i.target.value)} name="name" id="name" placeholder="i.e. John Smith" />
-                <label for="email">Email </label>
-                <input value={email} onChange={(i) => setEmail(i.target.value)} type="email" placeholder="i.e. youremail@gmail.com" id="email" name="email"/>
-                <label for="password">Password </label>
-                <input value={pswd} onChange={(i) => setPswd(i.target.value)} type="password" placeholder="********" id="password" name="password"/>
+                <label className="label-style">Full Name</label>
+                <input className="input-style" value={name} onChange={(i) => setName(i.target.value)} name="name" id="name" placeholder="i.e. John Smith" />
+                <label className="label-style" for="email">Email </label>
+                <input className="input-style" value={email} onChange={(i) => setEmail(i.target.value)} type="email" placeholder="i.e. youremail@gmail.com" id="email" name="email"/>
+                <label className="label-style" for="password">Password </label>
+                <input className="input-style" value={pswd} onChange={(i) => setPswd(i.target.value)} type="password" placeholder="********" id="password" name="password"/>
                 <button type="submit"> Log In</button>
             </form>
             <button className="link-button" onClick={() => props.onFormSwitch('login')}>Already have an account? Sign in here</button>

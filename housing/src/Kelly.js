@@ -26,7 +26,7 @@ function Test1(props) {
         console.log(total);
     
         if(total !== 100){
-          window.alert("the total percentages add to 100, not "+total+" you silly");
+          window.alert("Total percentages must add to 100");
           return;
         } 
 
@@ -91,16 +91,19 @@ function Test1(props) {
 
       var usrStr
       if(!auth.currentUser){
-        usrStr="Not Logged In";
+        usrStr="Guest";
       } else {
         usrStr=auth.currentUser.email;
       }
 
     return(<>
-      <button className='logout-button' onClick={() => props.onPageSwitch('map')}>Map</button>
+      <div className='navbar'>      
+      <button className='user-button'>Curr User: {usrStr}</button>
+      <button className='pie-button' onClick={() => props.onPageSwitch('map')}>Map</button>
       <button className="logout-button" onClick={() => logOut(props)}>Log out</button>
-      <h1>Curr User: {usrStr}</h1>
-        <title>Budget Calculator</title>
+      </div>
+      <div className='pie-page'>
+      <title>Budget Calculator</title>
       <h1>Budget Calculator</h1>
       <p>Enter your monthly income in the first box, and percentages(0-100) for each category</p>
       <p>After clicking submit, move the mouse over the pie chart to see how much you should spend in each category.</p><br />
@@ -134,7 +137,8 @@ function Test1(props) {
           
           
         </form>
-        <button className="logout-button" onClick={myFunction}>Submit</button>
+        <button className="pieSub-button" onClick={myFunction}>Submit</button>
+      </div>
 </>);
 }
 

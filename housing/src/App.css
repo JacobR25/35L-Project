@@ -4,7 +4,6 @@
   min-height: 100vh;
   align-items: center;
   justify-content: center;
-  /* can change this to am image later */
   background-color: rgb(93, 126, 96);
 }
 
@@ -14,22 +13,32 @@
 }
 
 .formatting-container {
-  padding: 2rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
   border: 1px solid white;
   background-color: rgb(45, 61, 46);
+}
+
+.title{
+  text-align: center;
+  color: white;
+  border-radius: 0px;
+  text-decoration: underline;
 }
 
 .subTitle {
   color: white;
 }
 
-label {
+.label-style {
   text-align: left;
   color: white;
   padding: 0.25rem 0;
 }
 
-input {
+.input-style {
   margin: 0.5rem 0;
   padding: 1rem;
   border: none;
@@ -58,11 +67,17 @@ button {
   padding: 0px;
 }
 
-.logout-button{
+.logout-button, .pie-button{
   border: none;
-  background-color: black;
+  background-color: rgb(93, 126, 96);
   color: white;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 0px;
+  border-left: 1px solid white;
   cursor: pointer;
+}
+
+.logout-button{
+  border-right: 1px solid white;
+  align-self: right;
 }

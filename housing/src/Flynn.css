@@ -1,14 +1,21 @@
-.text-display{
+.text-display-last, .text-display-fave{
     text-align: center;
-    display: flex;
+    display: inline-flex;
     min-height: 25vh;
     align-items: left;
     justify-content: left;
-    display: flex;
     flex-direction: column;
     padding: 2rem;
-    border: 1px solid black;
+    padding-top: 1rem;
     background-color: rgb(242, 228, 212);
+}
+
+.text-display-last{
+    padding-bottom: 3% !important;
+}
+
+.text-display-fave{
+    padding-top: 0% !important;
 }
 
 .favCounty-button {
@@ -17,11 +24,35 @@
     border-radius: 5px;
     cursor: pointer;
     color: white;
-    padding: 10px;
+    padding: 5px;
 }
 
 .flynn-page{
     padding-top: 20px;
-    padding-left: 20px;
+    padding-left: 100px;
     width: 30%;
+}
+
+.user-button{
+    border: none;
+    background-color: rgb(45, 61, 46);
+    color: white;
+    padding: 10px;
+    border-radius: 0px;
+    cursor: pointer;
+}
+
+.map-position{
+    position: relative;
+    width: 50%;
+    height: 50%;
+    padding-left: 20px;
+}
+
+h2, h3 {
+    margin: 2%;
+}
+
+.navbar {
+    background-color: rgb(93, 126, 96);
 }
