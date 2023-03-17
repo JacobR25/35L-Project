@@ -620,7 +620,8 @@ const CaliforniaMap = (lastFave='') => {
 
       <div className='map-position'>
         <h2>Hover over the map of California to explore rent prices by county!</h2>
-        <h3>You are looking at {hoverName}<br></br></h3>
+        <h3>Click for more information</h3>
+        <h4>You are looking at {hoverName} <br></br></h4> 
         <ComposableMap
           projection="geoAlbersUsa"
           projectionConfig={{ center: [0, 40], scale: 2300 }}
