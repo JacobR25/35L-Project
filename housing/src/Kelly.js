@@ -9,7 +9,16 @@ import{doc, updateDoc, getDoc} from 'firebase/firestore';
 import {db,auth} from "./firebase.js";
 import { useState } from 'react';
 
+const getNums = async ()=>{
+  if(!auth.currentUser){
+    return;
+  }
+  var docu= await getDoc(doc(db, "Users", auth.currentUser.uid));
+  return docu.data();
+}
+
 function Test1(props) {
+    const [nums, setNums]=useState();
     const [monthlyIncome, setMIncome] = useState();
     const [rentPercent, setRentPercent] = useState();
     const [transportationPercent, setTransPercent] = useState();
@@ -19,6 +28,26 @@ function Test1(props) {
     const [savingsPercent, setSavingPercent] = useState();
     const [entertainmentPercent, setEntPercent] = useState();
     const [otherPercent, setOtherPercent] = useState();
+
+    React.useEffect(() => {
+      const fetchData = async () => {
+        const numbers = await getNums();
+        if(!numbers){
+          return;
+        }
+        setMIncome(numbers.income);
+        setRentPercent(numbers.rent);
+        setTransPercent(numbers.transportation);
+        setFoodPercent(numbers.food);
+        setUtilitiesPercent(numbers.utilities);
+        setInsurPercent(numbers.insurance);
+        setSavingPercent(numbers.savings);
+        setEntPercent(numbers.entertainment);
+        setOtherPercent(numbers.other);
+
+      };
+      fetchData();
+    }, []);
 
 
   async function myFunction() {
